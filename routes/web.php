@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RandevuController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Inertia\Inertia;
@@ -27,11 +30,31 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::inertia('/home', 'Home');
-
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::delete('/profilePhotoDelete', [ProfileController::class, 'deleteProfilePhoto'])->name('profilePhotoDelete');
     Route::put('/profilePhotoUpdate', [ProfileController::class, 'updateProfilePhoto'])->name('profilePhotoUpdate');
     Route::delete('/profileDelete', [ProfileController::class, 'deleteProfile'])->name('profileDelete');
-    Route::get('/yeni-randevu', [RandevuController::class, 'index'])->name('yeni-randevu');
+
+    Route::group(['prefix' => 'customer', 'middleware' => 'customer'], function () {
+        Route::get('/', [CustomerController::class, 'index'])->name('customer');
+        Route::get('/gecmis-randevular', [CustomerController::class, 'randezveousHistory'])->name('gecmis-randevular');
+        Route::get('/randevu/{uuid}', [CustomerController::class, 'singleRandevu'])->name('singleRandevu');
+        Route::get('/yeni-randevu', [CustomerController::class, 'seeAllRendezveous'])->name('yeni-randevu');
+        Route::post('/yeniRandevu', [CustomerController::class, 'createRandevu'])->name('yeniRandevu');
+    
+        // Add more customer-specific routes here
+    });
+    
+    Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+        Route::get('/', [AdminController::class, 'index'])->name('admin');
+        
+        // Add more admin-specific routes here
+        Route::get('/urun-olustur', [AdminController::class, 'createProductPage'])->name('urun-olustur');
+        Route::post('/urunOlustur', [AdminController::class, 'createProduct'])->name('urun-olustur');
+        Route::get('/urunler', [AdminController::class, 'getProducts'])->name('urunler');
+        Route::put('/urunGuncelle', [ProductsController::class, 'updateProduct'])->name('urunGuncelle');
+        Route::post('/urunGorseliYukle', [ProductsController::class, 'uploadProductImage'])->name('urunGorseliYukle');
+        Route::get('/ayarlar', [AdminController::class, 'settingsPage'])->name('ayarlar');
+        // You can add more admin routes here
+    });
 });

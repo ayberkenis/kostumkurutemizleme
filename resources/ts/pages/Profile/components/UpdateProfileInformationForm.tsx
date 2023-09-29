@@ -27,10 +27,11 @@ function UpdateProfileInformationForm() {
       <div className="md:grid md:grid-cols-3 md:gap-6">
         {/* left side */}
         <div className="md:col-span-1">
-          <h3 className="text-lg font-medium text-gray-900"> Profile Information </h3>
+          <h3 className="text-lg font-bold text-gray-900 font-playfair"> Profil Bilgileri </h3>
           <p className="mt-1 text-sm text-gray-600">
             {" "}
-            Update your account's profile information and email address.{" "}
+            İsim veya email adresinizi güncelleyin.
+            {" "}
           </p>
         </div>
         {/* right side */}
@@ -41,7 +42,7 @@ function UpdateProfileInformationForm() {
                 {/* name */}
                 <div className="col-span-6 sm:col-span-4">
                   <label className="block text-sm font-medium text-gray-700" htmlFor="name">
-                    <span>Name</span>
+                    <span>İsim</span>
                   </label>
                   <input
                     id="name"
@@ -82,7 +83,7 @@ function UpdateProfileInformationForm() {
                 onClick={handleSubmit}
                 className="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 border border-transparent rounded-md hover:bg-gray-700"
               >
-                save
+                Kaydet
               </button>
             </div>
           </form>

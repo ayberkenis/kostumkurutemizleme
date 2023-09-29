@@ -22,7 +22,7 @@ class ProfileController extends Controller
                     'otherData' => 'Some other data',
                 ];
         
-        return Inertia::render('Profile', $data);
+        return Inertia::render('Profile/index', $data);
     }
 
     public function updateProfilePhoto(Request $request)

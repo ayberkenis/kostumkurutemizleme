@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,48 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * check if user has role
+     */
+
+     public function isUserAdmin()
+     {
+         return $this->hasRole('admin');
+     }
+
+     public static function getTotalUsers()
+    {
+        return self::count();
+    }
+    public function roles() {
+        return $this->belongsToMany(Role::class);
+    }
+    public function randezveous()
+    {
+        return $this->hasMany(Randezveous::class);
+    }
+    public function hasRole($roleName)
+{
+    $rolesArray = json_decode($this->roles, true);
+
+    if (is_array($rolesArray)) {
+        foreach ($rolesArray as $role) {
+            if (isset($role['name']) && $role['name'] === $roleName) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+
+    
+    public function logRoles()
+{
+    Log::info('User roles for ' . $this->name . ': ' . implode(', ', $this->roles));
+}
+
+
 }

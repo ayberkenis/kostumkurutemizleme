@@ -1,12 +1,25 @@
 import React from "react";
 import UserMenu from "./UserMenu";
+import { Link, usePage } from "@inertiajs/react";
 
 interface Props {
   sidebarOpen: boolean;
   setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+interface Role {
+  id: number;
+  name: string;
+  permissions: any[];
+}
+
 function Header({ sidebarOpen, setSidebarOpen }: Props) {
+  const auth = usePage().props as any;
+  const roles: Role[] = JSON.parse(auth.user.roles);
+  const isAdmin =roles.some(role => role.name === 'admin');
+
+
+  const url = usePage().url;
   return (
     <header className="sticky top-0 z-30 bg-white border-b border-gray-200">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -34,9 +47,11 @@ function Header({ sidebarOpen, setSidebarOpen }: Props) {
           </div>
 
           {/* Header: Right side */}
-          <div className="flex items-center">
-            <UserMenu />
-          </div>
+          <div className="flex items-center justify-center gap-12 p-8 lg:p-0">
+
+      <UserMenu />
+    </div>
+
         </div>
       </div>
     </header>

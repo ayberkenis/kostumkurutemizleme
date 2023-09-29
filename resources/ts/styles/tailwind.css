@@ -19,7 +19,15 @@
   font-family: 'Playfair Display';
 }
 }
-
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+}
 .hero {
   background-image: url('https://images.unsplash.com/photo-1545173168-9f1947eebb7f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80');
   position: relative;
@@ -41,9 +49,34 @@
 
 .service {
   @apply rounded-lg shadow-2xl hover:-translate-y-4 ease-in-out duration-300 ; 
-  background: radial-gradient(at center bottom, rgba(75, 85, 99, 0.25), rgba(228, 228, 231, 1), rgba(245, 245, 245, 1));
+  background: radial-gradient(at center bottom, rgba(75, 85, 99, 0.10), rgba(228, 228, 231, 1), rgba(235, 235, 235, 1));
 }
 
 .contact-form {
   background: radial-gradient(at left bottom, rgba(187, 247, 208, 0.5), rgba(221, 214, 254,0.5), rgba(204, 251, 241, 0.5));
+}
+
+.border-fade {
+  position: relative;
+  padding: 1px; /* Adjust as needed */
+  text-align: center; /* Center content if needed */
+}
+
+.border-fade::before,
+.border-fade::after {
+  content: "";
+  position: absolute;
+  width: 100%; /* Adjust the width of the fade */
+  height: 100%;
+  background: linear-gradient(to right, transparent, #000, transparent); /* Change the direction of the fade */
+  pointer-events: none; /* Prevents interference with content */
+}
+
+.border-fade::before {
+  left: 0;
+}
+
+.border-fade::after {
+  right: 0;
+  transform: scaleX(-1); /* Reverses the gradient for the right side */
 }

@@ -63,9 +63,9 @@ function UpdateProfilePhoto() {
         {/* left side */}
         <div className="md:col-span-1">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium text-gray-900"> Update Profile Photo</h3>
+            <h3 className="text-lg text-gray-900 font-playfair font-bold"> Profil Fotoğrafı Güncelle</h3>
             <p className="mt-1 text-sm text-gray-600">
-              Ensure your account is using a long, random password to stay secure.
+              Profil fotoğrafınızı güncelleyebilirsiniz. Profil fotoğrafınızı kaldırmak için "Fotoğrafı Kaldır" butonuna basabilirsiniz.
             </p>
           </div>
         </div>
@@ -80,7 +80,7 @@ function UpdateProfilePhoto() {
                   {/* profile photo file input */}
                   <input type="file" className="hidden" ref={photo} onChange={updatePhotoPreview} />
                   <label className="block text-sm font-medium text-gray-700" htmlFor="photo">
-                    <span>Photo</span>
+                    <span>Fotoğraf</span>
                   </label>
 
                   {/* current profile photo */}
@@ -117,7 +117,7 @@ function UpdateProfilePhoto() {
                     className="inline-flex items-center px-4 py-2 mt-2 mr-2 text-xs font-semibold tracking-widest text-gray-700 uppercase transition bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500"
                     onClick={selectNewPhoto}
                   >
-                    Select a new photo
+                    Yeni Fotoğraf Yükle
                   </button>
                   {
                     // auth.user.profile_photo_path &&
@@ -125,7 +125,7 @@ function UpdateProfilePhoto() {
                       className="inline-flex items-center px-4 py-2 mt-2 text-xs font-semibold tracking-widest text-gray-700 uppercase transition bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500"
                       onClick={deletePhoto}
                     >
-                      remove photo
+                      Fotoğrafı Kaldır
                     </button>
                   }
                   {photoMessage && <div className="mt-4 text-sm text-red-500">{photoMessage}</div>}
@@ -139,7 +139,7 @@ function UpdateProfilePhoto() {
                 className="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25"
                 onClick={updateProfilePhoto}
               >
-                Save
+                Kaydet
               </button>
             </div>
           </form>

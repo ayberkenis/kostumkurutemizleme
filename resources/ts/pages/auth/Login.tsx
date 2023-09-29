@@ -33,7 +33,7 @@ function Login({ status }: Props) {
     <div>
       <div className="flex flex-wrap w-full">
         {/* Login Section  */}
-        <div className="flex flex-col w-full md:w-1/2 bg-gradient-to-br from-neutral-200 via-violet-200 to-neutral-400">
+        <div className="flex flex-col w-full md:w-1/2 bg-gradient-to-br from-neutral-200 via-violet-200 to-neutral-400 h-screen">
           <div className="flex justify-center pt-12 md:justify-start md:pl-12 md:-mb-24">
             <Link href="/" className="p-4 text-xl font-bold text-white bg-black font-poppins tracking-widest">
               Kostüm Kuru Temizleme
@@ -79,7 +79,7 @@ function Login({ status }: Props) {
               <input
                 type="submit"
                 value="Giriş Yap"
-                className="p-2 mt-8 text-lg font-bold text-white bg-black hover:bg-gray-700 font-poppins"
+                className="p-2 mt-8 text-lg font-bold text-white bg-black hover:bg-gray-700 font-poppins cursor-pointer"
               />
             </form>
             <div className="pt-12 pb-12 text-center font-playfair">
@@ -94,7 +94,7 @@ function Login({ status }: Props) {
         </div>
 
         {/* Image Section */}
-        <div className="w-1/2 shadow-2xl">
+        <div className="w-1/2 shadow-2xl invisible lg:visible">
           <img className="hidden object-cover w-full h-screen md:block" src="https://images.unsplash.com/photo-1604254607827-01db84510729?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80" />
         </div>
       </div>

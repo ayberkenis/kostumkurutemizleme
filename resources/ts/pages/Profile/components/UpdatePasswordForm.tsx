@@ -50,9 +50,9 @@ function UpdatePasswordForm() {
         {/* left side */}
         <div className="md:col-span-1">
           <div className="px-4 sm:px-0">
-            <h3 className="text-lg font-medium text-gray-900"> Update Password </h3>
+            <h3 className="text-lg font-bold font-playfair text-gray-900"> Şifre Güncelle </h3>
             <p className="mt-1 text-sm text-gray-600">
-              Ensure your account is using a long, random password to stay secure.
+              Hesabınızın şifresini güncelleyin.
             </p>
           </div>
         </div>
@@ -67,7 +67,7 @@ function UpdatePasswordForm() {
                     className="block text-sm font-medium text-gray-700"
                     htmlFor="current_password"
                   >
-                    <span>Current Password</span>
+                    <span>Şuan kullandığınız şifre</span>
                   </label>
                   <input
                     ref={currentPasswordRef}
@@ -90,7 +90,7 @@ function UpdatePasswordForm() {
 
                 <div className="col-span-6 sm:col-span-4">
                   <label className="block text-sm font-medium text-gray-700" htmlFor="password">
-                    <span>New Password</span>
+                    <span>Yeni Şifre</span>
                   </label>
                   <input
                     ref={passwordRef}
@@ -113,7 +113,7 @@ function UpdatePasswordForm() {
                     className="block text-sm font-medium text-gray-700"
                     htmlFor="password_confirmation"
                   >
-                    <span>Confirm Password</span>
+                    <span>Yeni Şifre</span>
                   </label>
                   <input
                     ref={passwordConfimationRef}
@@ -134,7 +134,7 @@ function UpdatePasswordForm() {
                 onClick={handleSubmit}
                 className="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25"
               >
-                Save
+                Kaydet
               </button>
             </div>
           </form>

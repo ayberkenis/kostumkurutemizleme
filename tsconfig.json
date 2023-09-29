@@ -5,14 +5,26 @@
     "module": "esnext",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "forceConsistentCasingInFileNames": false,
+    "strict": false,
     "skipLibCheck": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitThis": false,
+    "noImplicitAny": false,
+    "allowUnusedLabels" : true,
+    "noImplicitReturns": false,
+    "strictNullChecks": false,
+
+
     "types": ["vite/client"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["resources/ts/*"]
     }
+
+
   },
   "include": ["resources/ts/**/*"]
 }

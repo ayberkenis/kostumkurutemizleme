@@ -10,8 +10,8 @@ function Profile() {
   return (
     <div>
       <Layout>
-        <div className="header">
-          <h1 className="header-text">Profiliniz</h1>
+        <div className="header p-4 border-2 border-b-2 mb-12">
+          <h1 className="header-text font-poppins font-bold">Profiliniz</h1>
         </div>
 
         <div className="mx-auto max-w-7xl">
