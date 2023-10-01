@@ -19,7 +19,7 @@ class AdminMiddleware
     // Check if the user is an admin (example: user has an "admin" role)
     if (auth()->check() && auth()->user()->isUserAdmin()) {
         // If an admin, allow the request to proceed
-        Log::debug('AdminMiddleware: User is an admin');
+        Log::info('AdminMiddleware: An admin logged in from the IP address: ' . $request->ip());
         return $next($request);
     }
 

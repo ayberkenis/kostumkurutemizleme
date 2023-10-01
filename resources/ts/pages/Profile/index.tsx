@@ -5,6 +5,7 @@ import UpdatePasswordForm from "./components/UpdatePasswordForm";
 import UpdateProfileInformationForm from "./components/UpdateProfileInformationForm";
 import Layout from "../../layouts/Layout";
 import UpdateProfilePhoto from "./components/UpdateProfilePhoto";
+import TwoFactor from "./components/TwoFactor";
 
 function Profile() {
   return (

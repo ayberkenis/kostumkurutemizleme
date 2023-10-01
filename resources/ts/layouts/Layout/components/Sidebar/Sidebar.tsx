@@ -4,30 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { usePage } from "@inertiajs/react";
 import {faHouse, faClockRotateLeft, faSquarePlus, faStar, faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import AdminSidebar from "./AdminSidebar";
-interface Props {
-  sidebarOpen: boolean;
-  setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-interface Role {
-  id: number;
-  name: string;
-  permissions: any[];
-}
-function Sidebar({ sidebarOpen, setSidebarOpen }: Props) {
-  const auth = usePage().props as any;
-  const roles: Role[] = JSON.parse(auth.user.roles);
+import SidebarItem from "./SidebarItem";
+function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const auth = usePage().props;
+  const roles = JSON.parse(auth.user.roles);
   const isAdmin =roles.some(role => role.name === 'admin');
   const trigger = useRef<HTMLButtonElement>(null);
   const sidebar = useRef<HTMLDivElement>(null);
 
   // close on click outside
   useEffect(() => {
-    const clickHandler = ({ target }: MouseEvent) => {
+    const clickHandler = ({ target }) => {
       if (!sidebar.current || !trigger.current) return;
       if (
         !sidebarOpen ||
-        sidebar.current.contains(target as Node) ||
-        trigger.current.contains(target as Node)
+        sidebar.current.contains(target) ||
+        trigger.current.contains(target)
       )
         return;
       setSidebarOpen(false);
@@ -39,7 +31,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: Props) {
 
   // close if the esc key is pressed
   useEffect(() => {
-    const keyHandler = ({ key }: KeyboardEvent) => {
+    const keyHandler = ({ key }) => {
       if (!sidebarOpen || key !== "Escape") return;
       setSidebarOpen(false);
     };
@@ -47,8 +39,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: Props) {
     return () => document.removeEventListener("keydown", keyHandler);
   }, [sidebarOpen]);
 
-
-  const url = usePage().url;
   
   return (
     <div className="lg:w-64 bg-black">
@@ -108,44 +98,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: Props) {
                 <>
                 <h3 className="pl-3 text-xs font-semibold text-gray-500 uppercase w-full">Panel</h3>
       
-                <li className={`px-3 py-2 rounded-sm hover:bg-zinc-900 p-4 ${url === '/customer' ? 'mx-2 bg-zinc-500' : ''}`}>
-              <Link href="/customer" className="block text-gray-200 hover:text-white">
-                <div className="flex items-center flex-grow">
-                <div className="flex items-center justify-start gap-4 hover:gap-6 flex-grow ease-in-out transition-all duration-200">
-                  <FontAwesomeIcon icon={faHouse}></FontAwesomeIcon> 
-                  <span className="text-sm font-medium">Anasayfa</span>
-                </div>
-                </div>
-              </Link>
-            </li>
-            {/* Customers */}
-            <li className={`px-3 py-2 rounded-sm hover:bg-zinc-900 p-4 ${url === '/yeni-randevu' ? 'mx-2 bg-zinc-500' : ''}`}>
-              <Link href="/customer/yeni-randevu" className="block text-gray-200 hover:text-white">
-                <div className="flex items-center justify-start gap-4 hover:gap-6 flex-grow ease-in-out transition-all duration-200">
-                  <FontAwesomeIcon icon={faSquarePlus}></FontAwesomeIcon> 
-                  <span className="text-sm font-medium">Yeni Randevu Oluştur</span>
-                </div>
-              </Link>
-            </li>
+                <SidebarItem href="/customer" title="Anasayfa" icon={faHouse} />
+                <SidebarItem href="/customer/yeni-randevu" title="Yeni Randevu Oluştur" icon={faSquarePlus} />
+                <SidebarItem href="/customer/gecmis-randevular" title="Geçmiş Randevular" icon={faClockRotateLeft} />
+                <SidebarItem href="/customer/degerlendirmeler" title="Değerlendirmeler" icon={faStar} />
 
-            <li className={`px-3 py-2 rounded-sm hover:bg-zinc-900 p-4 ${url === '/gecmis-randevular' ? 'mx-2 bg-zinc-500' : ''}`}>
-              <Link href="/customer/gecmis-randevular" className="block text-gray-200 hover:text-white">
-                <div className="flex items-center justify-start gap-4 hover:gap-6 flex-grow ease-in-out transition-all duration-200">
-                  <FontAwesomeIcon icon={faClockRotateLeft}></FontAwesomeIcon> 
-                  <span className="text-sm font-medium">Geçmiş Randevularınız</span>
-                </div>
-              </Link>
-            </li>
-
-            
-            <li className={`px-3 py-2 rounded-sm hover:bg-zinc-900 p-4 ${url === '/degerlendirmeler' ? 'mx-2 bg-zinc-500' : ''}`}>
-              <Link href="/customer/degerlendirmeler" className="block text-gray-200 hover:text-white">
-                <div className="flex items-center justify-start gap-4 hover:gap-6 flex-grow ease-in-out transition-all duration-200">
-                  <FontAwesomeIcon icon={faStar}></FontAwesomeIcon> 
-                  <span className="text-sm font-medium">Değerlendirmeler</span>
-                </div>
-              </Link>
-            </li>
             </>
               )
             }

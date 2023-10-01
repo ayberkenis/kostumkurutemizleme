@@ -149,12 +149,7 @@ function index() {
 
   return (
     <div>
-      <Layout>
-        <div className="header">
-          <h1 className="font-poppins font-bold font-2xl">Site Ayarları</h1>
-          <p> Bu sayfadan sitenin ayarlarını değiştirebilirsiniz. </p>
-        </div>
-
+      <Layout title="Site Ayarları" description="Bu sayfadan sitenizin ayarlarını değiştirebilirsiniz. Buradan değiştirdiğiniz tüm ayarlar hemen aktif olur.">
         <div className="flex flex-col gap-4 w-1/2 mx-auto">
           {settingsToRender.map((setting) => {
             //@ts-ignore

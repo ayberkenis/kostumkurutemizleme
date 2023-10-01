@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Randezveous;
 use App\Models\Products;
 use App\Models\Settings;
+use App\Models\Notifications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -24,6 +25,7 @@ class AdminController extends Controller
     $user = Auth::user();
     $totalUsers = User::getTotalUsers(); // Get the total number of users
     $randezveousWithUser = Randezveous::with('user')->get(); // today's randezveous only with user
+    $settings = Settings::all();
         
     // You can customize this data as per your requirements
     $data = [
@@ -33,6 +35,7 @@ class AdminController extends Controller
         'randezveous' => $randezveousWithUser,
         'totalProducts' => Products::count(),
         'totalRandezveous' => Randezveous::count(),
+        'settings' => $settings,
     ];
     
     // Check if the user has admin role, and if not, redirect to '/home'
@@ -42,7 +45,15 @@ class AdminController extends Controller
 
 }
 
-
+    public function randevuEdit (Request $request)
+    {
+        $randevu = Randezveous::find($request->id);
+        $randevu->date = $request->date;
+        $randevu->hour = $request->hour;
+        $randevu->is_permitted = $request->is_permitted;
+        $randevu->save();
+        return json_encode($randevu);
+    }
 
     public function getProducts(Request $request) {
         $products = Products::all();
@@ -103,7 +114,31 @@ class AdminController extends Controller
         ];
         return Inertia::render('Admin/Settings/index', $data);
     }
+    public function randevularPage(request $request)
+    {
+        $user = Auth::user();
+        $randevular = Randezveous::all();
+        $randevularUser = Randezveous::with('user')->get(); // today's randezveous only with user
+        $products = Products::all();
+        $data = [
+            'user' => $user,
+            'randevular' => $randevular,
+            'randevularUser' => $randevularUser,
+            'products' => $products,
+        ];
+        return Inertia::render('Admin/Randezveous/editRandevu', $data);
+    }
 
+    public function bildirimlerPage(request $request)
+    {
+        $user = Auth::user();
+        $notifications = Notifications::all();
+        $data = [
+            'user' => $user,
+            'notifications' => $notifications,
+        ];
+        return Inertia::render('Admin/Notifications/index', $data);
+    }
 
     public function userStats(Request $request) 
     {
@@ -140,4 +175,25 @@ class AdminController extends Controller
         return Inertia::location('Admin');
     }
     
+    public function newCustomerPage(request $request)
+    {
+        $user = Auth::user();
+        $data = [
+            'user' => $user,
+        ];
+        return Inertia::render('Admin/Users/newCustomer', $data);
+    }
+
+    public function allUsersPage(request $request)
+    {
+        $user = Auth::user();
+        $users = User::all();
+        $data = [
+            'user' => $user,
+            'users' => $users,
+        ];
+        return Inertia::render('Admin/Users/users', $data);
+    }
+
+
 }

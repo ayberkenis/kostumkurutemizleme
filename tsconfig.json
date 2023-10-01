@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "jsx": "preserve",
-    "module": "esnext",
+    "jsx": "react-jsx",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": false,

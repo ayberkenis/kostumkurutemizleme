@@ -41,6 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/randevu/{uuid}', [CustomerController::class, 'singleRandevu'])->name('singleRandevu');
         Route::get('/yeni-randevu', [CustomerController::class, 'seeAllRendezveous'])->name('yeni-randevu');
         Route::post('/yeniRandevu', [CustomerController::class, 'createRandevu'])->name('yeniRandevu');
+        Route::get('/degerlendirmeler', [CustomerController::class, 'ratingsPage'])->name('degerlendirmeler');
     
         // Add more customer-specific routes here
     });
@@ -55,6 +56,16 @@ Route::group(['middleware' => 'auth'], function() {
         Route::put('/urunGuncelle', [ProductsController::class, 'updateProduct'])->name('urunGuncelle');
         Route::post('/urunGorseliYukle', [ProductsController::class, 'uploadProductImage'])->name('urunGorseliYukle');
         Route::get('/ayarlar', [AdminController::class, 'settingsPage'])->name('ayarlar');
+        Route::get('/randevular', [AdminController::class, 'randevularPage'])->name('randevular');
+        Route::put('randevuDuzenle/{id}', [AdminController::class, 'randevuEdit']) -> name('randevuEdit');
+        Route::get('/bildirimler', [AdminController::class, 'bildirimlerPage'])->name('bildirimler');
+        Route::get('/musteriler', [AdminController::class, 'allUsersPage'])->name('musteriler');
+        Route::get('/yeni-musteri', [AdminController::class, 'newCustomerPage'])->name('yeniMusteri');
+        Route::post('/musteriOlustur', [AdminController::class, 'createCustomer'])->name('musteriOlustur');
+        Route::get('/musteri/{uuid}', [AdminController::class, 'singleCustomer'])->name('musteri');
+        Route::get('/musteri/{uuid}/randevular', [AdminController::class, 'singleCustomerRandevular'])->name('musteriRandevular');
+        Route::get('/musteri/{uuid}/bildirimler', [AdminController::class, 'singleCustomerBildirimler'])->name('musteriBildirimler');
+        Route::get('/musteri/{uuid}/ayarlar', [AdminController::class, 'singleCustomerAyarlar'])->name('musteriAyarlar');
         // You can add more admin routes here
     });
 });

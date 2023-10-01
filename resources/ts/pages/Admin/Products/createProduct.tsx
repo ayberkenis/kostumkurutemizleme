@@ -3,21 +3,7 @@ import React, { ChangeEvent, FormEvent, useState, useRef, MouseEvent } from "rea
 import { Link, usePage, router } from "@inertiajs/react";
 import placeholder  from "../../../../storage/products/placeholder.png"
 
-
-interface Errors {
-  name?: string;
-  description?: string;
-  price?: string;
-    image?: string;
-  is_active?: string;
-  cleaning_duration?: string;
-  is_discount?: string;
-  discount_price?: string;
-  discount_start_date?: string;
-  discount_end_date?: string;
-}
-
-function createProduct({ errors }: { errors: Errors }) {
+function createProduct({ errors }) {
 
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
@@ -25,7 +11,7 @@ function createProduct({ errors }: { errors: Errors }) {
 
 
 
-  const auth = usePage().props as any;
+  const auth = usePage().props;
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -41,7 +27,7 @@ function createProduct({ errors }: { errors: Errors }) {
 
   const [validationErrors, setValidationErrors] = useState<Errors>({});
 
-  function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+  function handleChange(e) {
     const key = e.target.id;
     const value = e.target.value;
 
@@ -57,11 +43,11 @@ function createProduct({ errors }: { errors: Errors }) {
     }));
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function handleSubmit(e) {
     e.preventDefault();
 
     // Validation logic for form fields
-    const errors: Errors = {};
+    const errors = {};
     if (!form.name) {
       errors.name = "Ürün İsmi alanı zorunludur.";
     }
@@ -100,8 +86,8 @@ function createProduct({ errors }: { errors: Errors }) {
 
   }
   // Add a function to handle image selection
-  function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0] as any;
+  function handleImageChange(e) {
+    const file = e.target.files?.[0];
     if (file) {
       setSelectedImage(file);
       setForm((form) => ({

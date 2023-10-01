@@ -2,5 +2,6 @@
     "cSpell.words": [
         "randevou",
         "randezveous"
-    ]
+    ],
+    "typescript.validate.enable": false
 }

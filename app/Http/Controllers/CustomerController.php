@@ -73,6 +73,16 @@ class CustomerController extends Controller
         return Inertia::render('Customer/Randevu/singleRandevu', $data);
     }
 
+    public function ratingsPage (Request $request)
+    {
+        $user = Auth::user();
+        $data = [
+            'user' => $user,
+            'randezveous' => $user -> randezveous,
+
+        ];
+        return Inertia::render('Customer/Ratings/RatingsIndex', $data);
+    }
 
 
 }

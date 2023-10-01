@@ -147,13 +147,9 @@ function Randevu({ errors }: { errors: Errors }) {
 
   return (
     <div>
-      <Layout>
-        <div className="header">
-          <h1 className="font-poppins font-bold font-2xl">Randevu oluştur</h1>
-        </div>
-
-        <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg pb-8 w-1/2 mx-auto">
-          <div className="bg-white border-b border-gray-200 font-playfair pb-8 pt-8">
+      <Layout title="Randevu oluştur" description="Bu sayfadan randevu oluşturabilirsiniz. Randevunuz onaylandığında kayıt olurken belirttiğiniz telefon numarasına Whatsapp mesajı ve email adresinize mail gönderilecektir.">
+        <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg pb-8 w-full mx-auto">
+          <div className="bg-white border-b border-gray-200 font-playfair pb-8 pt-8 mx-auto w-1/2">
             <form className="flex flex-col mt-3 md:mt-8" onSubmit={handleSubmit}>
               <div className="flex flex-col pt-4">
                 <label htmlFor="email" className="text-lg font-poppins">

@@ -11,13 +11,7 @@ function Home() {
 
   return (
     <div>
-      <Layout>
-        <div className="header">
-          <h1 className="header-text font-poppins font-bold">
-            Kostüm Kuru Temizleme Panelinize Hoşgeldiniz!
-          </h1>
-        </div>
-
+      <Layout title="Kostüm Kuru Temizleme" description="Kostüm Kuru Temizleme Panelinize Hoşgeldiniz!">
         <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
           <div className="px-4 py-2 bg-white border-b border-gray-200 font-playfair">
             {auth.randezveous && auth.randezveous.length > 0 ? (

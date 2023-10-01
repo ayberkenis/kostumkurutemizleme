@@ -50,4 +50,17 @@ class ProductsController extends Controller
         $product->save();
         return Inertia::location('admin');
     }
+
+    public function getProducts (request $request)
+    {
+        $products = Products::all();
+        return $products;
+    }
+
+    public function getProductById (request $request)
+    {
+        $product = Products::where('id', $request->id)->first();
+        return $product;
+    }
+    
 }

@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+//Import Log
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index(request $request)
     {
                 // Assuming you want to pass some data to the Inertia view
                 $user = Auth::user(); // Get the authenticated user
@@ -19,7 +21,7 @@ class ProfileController extends Controller
                 // You can customize this data as per your requirements
                 $data = [
                     'user' => $user,
-                    'otherData' => 'Some other data',
+
                 ];
         
         return Inertia::render('Profile/index', $data);
