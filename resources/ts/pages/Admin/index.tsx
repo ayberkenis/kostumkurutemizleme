@@ -7,6 +7,7 @@ import { Link } from "@inertiajs/react";
 import TodaysAppointments from "./IndexComponents/todaysAppointments";
 import Statistics from "./IndexComponents/statistics";
 import ShopManager from "./IndexComponents/shopManagement";
+import QuickActions from "./IndexComponents/QuickActions";
 
 const ListItem = ({ children, icon }: any) => (
   
@@ -22,7 +23,8 @@ const ListItem = ({ children, icon }: any) => (
 
 function Home() {
   const auth = usePage().props as any;
-  console.log(auth.randezveous);
+  const settings = auth.settings;
+  console.log(settings);
   return (
     <div>
       <Layout title="Kostüm Kuru Temizleme Yönetici Paneli" description="Bu sayfadan günlük durumunuzu kontrol edebilir, istatistiklerinize bakabilirsiniz.">
@@ -32,6 +34,7 @@ function Home() {
               <TodaysAppointments auth={auth}></TodaysAppointments>
               <Statistics auth={auth}></Statistics>
               <ShopManager auth={auth}></ShopManager>
+              <QuickActions></QuickActions>
             </div>
 
 

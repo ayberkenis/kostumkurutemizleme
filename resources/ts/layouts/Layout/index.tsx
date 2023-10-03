@@ -27,7 +27,7 @@ function Layout({ children, title, description }: Props) {
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
       {/* Content area */}
-      <div className="relative flex flex-col flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+      <div className="relative flex flex-col flex-1 bg-gray-100">
         {/*  Site header */}
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
@@ -47,8 +47,8 @@ function Layout({ children, title, description }: Props) {
             </InnerContent>
             </div>
             </div>
-          <div className="border-fade my-12 mx-24"></div>
-          <div className="w-full flex flex-row justify-center items-center divide-neutral-900 ">
+          <div className="border-fade"></div>
+          <div className="w-full h-24 flex flex-row justify-center items-center">
           <Link href={previousPage} className="w-1/2 text-black hover:text-gray-700 font-playfair px-4 font-bold flex flex-row gap-4 justify-center items-center">
               <FontAwesomeIcon icon={faArrowLeft} className="text-black" />
               Geri Dön

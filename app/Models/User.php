@@ -61,7 +61,7 @@ class User extends Authenticatable
     }
     public function randezveous()
     {
-        return $this->hasMany(Randezveous::class);
+        return $this->hasMany(Appointments::class);
     }
     public function hasRole($roleName)
 {

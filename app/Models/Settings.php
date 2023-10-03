@@ -12,7 +12,21 @@ class Settings extends Model
     public $incrementing = false; // Set to false since it's not auto-incrementing
 
     protected $table = 'settings';
-    
+
+    protected $fillable = [
+        'key',
+        'value',
+        'display_name',
+        'description',
+        'category',
+        'type',
+        'options',
+        'placeholder',
+        'default',
+        'required',
+        'order',
+        'html_attributes',
+    ];
 
 
     public static function getSettings()

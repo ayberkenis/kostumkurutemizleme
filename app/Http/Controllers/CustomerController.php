@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\User;
-use App\Models\Randezveous;
+use App\Models\Appointments;
 use App\Models\Products;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -21,8 +22,8 @@ class CustomerController extends Controller
         ];
         return Inertia::render('Customer/Home', $data);
     }
-    public function createRandevu(Request $request) {
-        $randezveous = new Randezveous();
+    public function createAppointment(Request $request) {
+        $randezveous = new Appointments();
         $randezveous->user_id = Auth::user()->id;
         $randezveous->id = Str::uuid();
         $randezveous->date = $request->date;
@@ -38,20 +39,20 @@ class CustomerController extends Controller
         $randezveous->save();
         return Inertia::location('customer');
     }
-    public function seeAllRendezveous(Request $request)
+    public function seeAllAppointments(Request $request)
     {
         // Assuming you want to create a rendezvous for the authenticated user
         $user = Auth::user(); // Get the authenticated user
-        $randezveous = Randezveous::all();
+        $randezveous = Appointments::all();
         $products = Products::all();
         $data = [
             'user' => $user,
             'products' => $products,
         ];
-        return Inertia::render('Customer/Randevu/randevu', $data);
+        return Inertia::render('Customer/Appointments/AppointmentIndex', $data);
     }
 
-    public function randezveousHistory()
+    public function AppointmentsHistory()
     {
         $user = Auth::user();
         $data = [
@@ -59,18 +60,18 @@ class CustomerController extends Controller
             'randezveous' => $user -> randezveous,
 
         ];
-        return Inertia::render('Customer/Randevu/RandevuHistory', $data);
+        return Inertia::render('Customer/Appointments/AppointmentHistory', $data);
     }
     
-    public function singleRandevu (Request $request) {
-        $randezveous = Randezveous::where('id', $request->uuid)->first();
+    public function singleAppointment (Request $request) {
+        $randezveous = Appointments::where('id', $request->uuid)->first();
         $user = Auth::user();
         $data = [
             'user' => $user,
             'randezveous' => $randezveous,
             
         ];
-        return Inertia::render('Customer/Randevu/singleRandevu', $data);
+        return Inertia::render('Customer/Appointments/SingleAppointment', $data);
     }
 
     public function ratingsPage (Request $request)

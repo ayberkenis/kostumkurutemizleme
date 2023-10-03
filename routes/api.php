@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Models\Products;
-use App\Http\Controllers\ProductController;
+
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 // Define your authenticated API routes here
-Route::get('/api/products', [ProductsController::class, 'getProducts'])->name('products.index');
-Route::get('/api/products/{id}', [ProductsController::class, 'getProductById'])->name('products.show');
 
+
+Route::put('/shop/status', [AdminController::class, 'updateShopStatus'])->name('shopStatus.update');

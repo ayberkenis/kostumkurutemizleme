@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 use App\Models\User;
-use App\Models\Randezveous;
+use App\Models\Appointments;
 use App\Models\Products;
 use App\Models\Settings;
 use App\Models\Notifications;
@@ -24,17 +24,18 @@ class AdminController extends Controller
     // Assuming you want to pass some data to the Inertia view
     $user = Auth::user();
     $totalUsers = User::getTotalUsers(); // Get the total number of users
-    $randezveousWithUser = Randezveous::with('user')->get(); // today's randezveous only with user
+    $randezveousWithUser = Appointments::with('user')->get(); // today's randezveous only with user
     $settings = Settings::all();
         
     // You can customize this data as per your requirements
+    Log::debug("Settings " . $settings);
     $data = [
         'user' => $user,
         'serverStatus' => 'online',
         'totalUsers' => User::count(), // Ensure that 'totalUsers' is included in the data array
         'randezveous' => $randezveousWithUser,
         'totalProducts' => Products::count(),
-        'totalRandezveous' => Randezveous::count(),
+        'totalRandezveous' => Appointments::count(),
         'settings' => $settings,
     ];
     
@@ -45,9 +46,50 @@ class AdminController extends Controller
 
 }
 
-    public function randevuEdit (Request $request)
+public function updateShopStatus(Request $request) {
+    // Assuming you have a model for your Settings table, you can use the `first` method to find the specific row.
+    $setting = Settings::where('key', 'shop_open_close')->first();
+
+    if ($setting) {
+        // Toggle the value between 'open' and 'closed'.
+        $newStatus = ($setting->value == 'open') ? 'closed' : 'open';
+        $setting->value = $newStatus;
+        $setting->save();
+
+        // Return a response indicating the change.
+        if ($newStatus == 'open') {
+            return response()->json(['message' => 'Shop was closed and now open.']);
+        } else {
+            return response()->json(['message' => 'Shop was open and now closed.']);
+        }
+    } else {
+        // Handle the case where the row with the 'shop_open_close' key was not found.
+        return response()->json(['message' => 'Shop status key not found'], 404);
+    }
+}
+
+public function saveSettings(Request $request)
+{
+    $id = $request->input('id'); // Get the id from the request
+    $setting = Settings::find($id); // Find the record by id
+
+    if ($setting) {
+        // Update the specific fields you want
+        $setting->key = $request->input('key');
+        $setting->value = $request->input('value');
+        // Add more fields as needed
+
+        // Save the updated record
+        $setting->save();
+    }
+    
+    return Inertia::location('/admin/ayarlar');
+}
+
+
+    public function AppointmentEdit (Request $request)
     {
-        $randevu = Randezveous::find($request->id);
+        $randevu = Appointments::find($request->id);
         $randevu->date = $request->date;
         $randevu->hour = $request->hour;
         $randevu->is_permitted = $request->is_permitted;
@@ -114,11 +156,11 @@ class AdminController extends Controller
         ];
         return Inertia::render('Admin/Settings/index', $data);
     }
-    public function randevularPage(request $request)
+    public function AppointmentsIndex(request $request)
     {
         $user = Auth::user();
-        $randevular = Randezveous::all();
-        $randevularUser = Randezveous::with('user')->get(); // today's randezveous only with user
+        $randevular = Appointments::all();
+        $randevularUser = Appointments::with('user')->get(); // today's randezveous only with user
         $products = Products::all();
         $data = [
             'user' => $user,
@@ -129,7 +171,7 @@ class AdminController extends Controller
         return Inertia::render('Admin/Randezveous/editRandevu', $data);
     }
 
-    public function bildirimlerPage(request $request)
+    public function NotificationsPage(request $request)
     {
         $user = Auth::user();
         $notifications = Notifications::all();

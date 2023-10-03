@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
 
-class Randezveous extends Model
+class Appointments extends Model
 {
     use HasFactory;
     protected $primaryKey = 'id'; // Specify the name of your primary key column
@@ -26,7 +26,7 @@ class Randezveous extends Model
     protected $casts = [
         'products' => 'array',
     ];
-    public function todaysRandezveous()
+    public function todaysAppointments()
     {
         return $this->whereDate('date', today())->get();
     }
@@ -45,7 +45,7 @@ class Randezveous extends Model
     ]);
 
     // Check if there is an existing randevous on the same date and time
-    $existingAppointment = Randezvous::where('date', $validatedData['date'])
+    $existingAppointment = Appointments::where('date', $validatedData['date'])
         ->where('time', $validatedData['time'])
         ->first();
 
@@ -55,7 +55,7 @@ class Randezveous extends Model
     }
 
     // Create a new randevous record
-    Randezvous::create($validatedData);
+    Appointments::create($validatedData);
 
     // Redirect to a success page or do any other required actions
     return redirect()->route('customer')->with('success', 'Randevu başarıyla oluşturuldu.');
