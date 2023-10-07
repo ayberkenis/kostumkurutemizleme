@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Models\Products;
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +26,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::put('/shop/status', [AdminController::class, 'updateShopStatus'])->name('shopStatus.update');
+
+Route::post('/sendContactMail', [MailController::class, 'sendContactMail'])->name('sendContactMail');

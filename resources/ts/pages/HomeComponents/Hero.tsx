@@ -12,7 +12,7 @@ function Hero() {
   
   return (
     <div className="w-full flex flex-row justify-center lg:justify-center items-center h-full">
-      <div className="w-full drop-shadow-lg text-white transition-all ease-in-out duration-100 hover:scale-110 text-center">
+      <div className="drop-shadow-lg text-white transition-all ease-in-out duration-100 hover:scale-110 text-center">
         <span className="text-2xl lg:text-4xl font-poppins font-bold text-white">        { settings.find((element) => element.key == 'site_name').value } </span>
         <p className="text-2xl lg:text-md mt-2 font-playfair font-semibold text-sky-400 tracking-widest ">En şık halinize geri dönün.</p>
       </div>

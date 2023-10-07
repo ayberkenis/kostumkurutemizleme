@@ -25,8 +25,8 @@ function Footer({  }) {
         </div>
         <div className="footer-columns footer-socials flex flex-col h-full w-full items-center order-3 lg:order-none">
         <h2 className="text-2xl font-playfair mb-8 tracking-widest hover:scale-110">Sosyal Medya'da Biz</h2>
-          <a href="" className="text-2xl hover:text-sky-500 text-white"><FontAwesomeIcon icon={faSquareInstagram}  /> <span className="text-lg font-poppins font-semibold">Instagram</span></a>
-          <a href="" className="text-2xl hover:text-sky-500 text-white"><FontAwesomeIcon icon={faSquareYoutube} /> <span className="text-lg font-poppins font-semibold">YouTube</span></a>
+          <a href="/" className="text-2xl hover:text-sky-500 text-white"><FontAwesomeIcon icon={faSquareInstagram}  /> <span className="text-lg font-poppins font-semibold">Instagram</span></a>
+          <a href="/" className="text-2xl hover:text-sky-500 text-white"><FontAwesomeIcon icon={faSquareYoutube} /> <span className="text-lg font-poppins font-semibold">YouTube</span></a>
         </div>
         </div>
     </div>

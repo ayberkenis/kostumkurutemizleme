@@ -38,10 +38,8 @@ function Welcome({ canLogin, canRegister }: Props) {
 
     <div className="w-full h-48 lg:h-16 flex flex-col lg:flex-row items-center justify-around lg:justify-between relative lg:py-2 lg:pl-4 lg:pr-4 text-center lg:text-start bg-black lg:dark:bg-black border-white border-t-2 border-opacity-5 header">
 
-        <h1 className="text-2xl lg:text-2xl font-semibold drop-shadow-lg text-white z-10 font-poppins hover:text-sky-500 hover:shadow-lg hover:drop-shadow-sky-500 w-full lg:w-1/3 "> 
+        <h1 className="text-2xl lg:text-2xl font-semibold drop-shadow-lg text-white z-10 font-poppins hover:text-sky-500 hover:shadow-lg lg:w-1/3 "> 
         { settings.find((element) => element.key == 'site_name').value }
-        
-
         </h1>
         <div className="flex flex-row justify-between items-center z-10  w-full lg:w-1/3 px-4 lg:px-0 bg-zinc-900 lg:bg-black py-4 lg:py-0">
           <Link href="/" className="text-gray-700 dark:text-gray-200 hover:underline font-poppins text-lg text-center mt-2"> Anasayfa </Link>
@@ -50,18 +48,18 @@ function Welcome({ canLogin, canRegister }: Props) {
 
           </div>
         {canLogin && (
-          <div className="z-30 lg:mt-2 font-playfair italic w-full lg:w-1/3 flex justify-center lg:justify-end gap-4">
+          <div className="z-30 font-playfair italic w-full lg:w-1/3 flex justify-center lg:justify-end gap-4">
             {auth.user ? (
-              <Link href="/customer" className="text-sm text-gray-700 dark:text-gray-200  hover:underline">
+              <Link href="/customer" className="text-lg text-gray-700 dark:text-gray-200  hover:underline">
                 Müşteri Paneli
               </Link>
             ) : (
-              <Link href="/login" className="text-sm text-gray-700 dark:text-gray-200  hover:underline">
+              <Link href="/login" className="text-lg text-gray-700 dark:text-gray-200  hover:underline">
                 Müşteri Girişi
               </Link>
             )}
             {canRegister && (
-              <Link href="/register" className="text-sm text-gray-700 dark:text-gray-200  hover:underline">
+              <Link href="/register" className="text-lg text-gray-700 dark:text-gray-200  hover:underline">
                 Müşteri Kaydı
               </Link>
             )}

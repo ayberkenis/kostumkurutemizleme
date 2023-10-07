@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/musteri/{uuid}/randevular', [AdminController::class, 'singleCustomerRandevular'])->name('musteriRandevular');
         Route::get('/musteri/{uuid}/bildirimler', [AdminController::class, 'singleCustomerBildirimler'])->name('musteriBildirimler');
         Route::get('/musteri/{uuid}/ayarlar', [AdminController::class, 'singleCustomerAyarlar'])->name('musteriAyarlar');
+        Route::get('/mesajlar', [AdminController::class, 'messagesPage']) -> name('mesajlar');
         // You can add more admin routes here
     });
 });
